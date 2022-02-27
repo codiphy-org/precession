@@ -5,7 +5,6 @@ $$
 $$
 
 $$
-
 \frac{\partial \mathscr{L}}{\partial r} = m r \dot{\theta}^2 - \frac{GMm}{r^2}
 $$
 
