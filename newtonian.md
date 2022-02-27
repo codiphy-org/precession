@@ -56,5 +56,5 @@ where L is the angular momentum
 Substituting for $$\dot{\theta}$$ we get
 
 $$
-\ddot{r} = \frac{L^2}{m^2r^3} - \frac{GM}{r^2}
+\boxed{\ddot{r} = \frac{L^2}{m^2r^3} - \frac{GM}{r^2}}
 $$
