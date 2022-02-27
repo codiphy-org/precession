@@ -41,10 +41,20 @@ Simplifying Euler-Lagrange equation for the $$\theta$$ coordinate
 
 $$
 0 = \frac{\partial \mathscr{L}}{\partial \theta} -
-        \frac{d}{dt}(\frac{\partial \mathscr{L}}{\partial \dot{\theta}}) = r
-        \dot{\theta}^2 - \frac{GM}{r^2} -\ddot{r}
+        \frac{d}{dt}(\frac{\partial \mathscr{L}}{\partial \dot{\theta}}) =
+        \frac{d}{dt}(m r^2 \dot{\theta})
 $$
 
+Simplifying and integrating we get
+
 $$
-        \longrightarrow L = m r^2 \dot{\theta}
+\longrightarrow L = m r^2 \dot{\theta}
+$$
+
+where L is the angular momentum
+
+Substituting for $$\dot{\theta}$$ we get
+
+$$
+\ddot{r} = \frac{L^2}{m^2r^3} - \frac{GM}{r^2}
 $$
