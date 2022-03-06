@@ -1,0 +1,6 @@
+numpy
+matplotlib
+jupyterlab
+PYYaml
+pytest
+pytest-cov
