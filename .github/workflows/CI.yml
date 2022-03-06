@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "master"
+      - "main"
+  pull_request:
+    branches:
+      - "master"
+      - "main"
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}, Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macOS-latest, ubuntu-latest]
+        python-version: [3.8]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run tests
+        shell: bash
+        run: |
+          pip3 install -r requirements.txt
+          pytest -v --cov=precession --cov-report=term --color=yes src/precession/tests/
