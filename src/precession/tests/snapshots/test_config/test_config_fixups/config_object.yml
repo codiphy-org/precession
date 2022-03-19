@@ -1,0 +1,8 @@
+batchSteps: 1
+decoupledMercury: false
+enableConvergenceTest: true
+filePrefix: precession
+grMercury: true
+maxSteps: 50
+onlyMercury: false
+tEnd: 30

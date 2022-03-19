@@ -32,5 +32,5 @@ class Config(object):
         with open(filename, 'w') as file:
             yaml.dump(self.__dict__, file)
 
-    def __str__(self):
-        return json.dumps(self.__dict__)
+    def __str__(self) -> str:
+        return f"config => {', '.join(yaml.safe_dump(self.__dict__).splitlines())}"
