@@ -1,8 +1,9 @@
 tEnd: 450
-maxSteps: 1000000
-batchSteps: 1000000
+maxSteps: 10
+batchSteps: 10
 filePrefix: precession
 onlyMercury: False
 decoupledMercury: False
 grMercury: True
 enableConvergenceTest: True
+targetTolerance: 1.0e-7
