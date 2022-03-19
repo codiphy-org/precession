@@ -6,3 +6,4 @@ onlyMercury: False
 decoupledMercury: False
 grMercury: True
 enableConvergenceTest: True
+targetTolerance: 1.0e-7

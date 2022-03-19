@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 def parse_args():
     parser = argparse.ArgumentParser("Compute precession of orbits")
-    parser.add_argument('--config', type=str, default=None,
+    parser.add_argument('--config', type=str, default="config.yml",
                         help="yaml config file")
     return parser.parse_args()
 
@@ -124,7 +124,7 @@ def ComputeDByDt(inVec, t, cookie):
     return np.array([drP_dt, dthetaP_dt, dvP_dt, domegaP_dt, drM_dt, dthetaM_dt, dvM_dt, domegaM_dt])
 
 
-def Plot(config, targetTolerance, tEnd, dt, data, planet, mercury):
+def Plot(config, tEnd, dt, data, planet, mercury):
     # incoming values are arranged as:
     # [rP(t), thetaP(t), vP(t), omegaP(t), rM(t), thetaM(t), vM(t), omegaM(t)]
     # note that v = dr_dt and omega = dtheta_dt
@@ -138,8 +138,8 @@ def Plot(config, targetTolerance, tEnd, dt, data, planet, mercury):
         plt.ylabel('Y')
         xValues = np.zeros(nRows)
         yValues = np.zeros(nRows)
-        rPMin = planet.R - targetTolerance
-        rPMax = planet.R + targetTolerance
+        rPMin = planet.R - config.targetTolerance
+        rPMax = planet.R + config.targetTolerance
         t = 0.
         print("%s out of tolerance orbit data for last 100 yrs (tEnd %.7f, rP %.9f, rPMin %.9f, rPMax %.9f): count, t, rP, thetaP, phiP" % (
             planet.name, tEnd, planet.R, rPMin, rPMax))
@@ -164,8 +164,8 @@ def Plot(config, targetTolerance, tEnd, dt, data, planet, mercury):
     plt.ylabel('Y')
     xValues = np.zeros(nRows)
     yValues = np.zeros(nRows)
-    rMMaxMin = mercury.RMax - targetTolerance
-    rMMaxMax = mercury.RMax + targetTolerance
+    rMMaxMin = mercury.RMax - config.targetTolerance
+    rMMaxMax = mercury.RMax + config.targetTolerance
     t = 0.
     rMMax1 = 0.
     rMMax2 = 0.
@@ -199,10 +199,9 @@ if __name__ == "__main__":
     if not args.config:
         config = Config.load(args.config)
 
-    logging.info(config)
+    logging.info(f"{config}")
 
-    # TODO: include dt, dtFactor, targetTolerance into config later
-    targetTolerance = 1.0e-7
+    # TODO: include dt, dtFactor into config later
     # dt = 0.001
     dt = 0.00005
     dtFactor = 2
@@ -225,7 +224,7 @@ if __name__ == "__main__":
     print("completed ODESolve for dt1, total-run-time %d, nSteps %d, tEnd %0.7f, final state %s" %
           (timer1, len(data1), tEnd1, data1[-1]))
     # TODO: print statistics on timimg
-    Plot(config, targetTolerance, tEnd1, dt1, data1, planet, mercury)
+    Plot(config, tEnd1, dt1, data1, planet, mercury)
 
     if (config.enableConvergenceTest):
         dt2 = dt1 * dtFactor
@@ -236,7 +235,7 @@ if __name__ == "__main__":
         print("completed ODESolve for dt2, total-run-time %d, nSteps %d, tEnd %0.7f, final state %s" %
               (timer2, len(data2), tEnd2, data2[-1]))
         # TODO: print statistics on timimg
-        Plot(config, targetTolerance, tEnd2, dt2, data2, planet, mercury)
+        Plot(config, tEnd2, dt2, data2, planet, mercury)
 
         dt3 = dt2 * dtFactor
         print("\n\n=========")
@@ -246,7 +245,7 @@ if __name__ == "__main__":
         print("completed ODESolve for dt3, total-run-time %d, nSteps %d, tEnd %0.7f, final state %s" %
               (timer3, len(data3), tEnd3, data3[-1]))
         # TODO: print statistics on timimg
-        Plot(config, targetTolerance, tEnd3, dt3, data3, planet, mercury)
+        Plot(config, tEnd3, dt3, data3, planet, mercury)
 
         diff12 = (data1[::2*dtFactor])[:len(data3)] - \
             (data2[::dtFactor])[:len(data3)]
