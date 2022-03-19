@@ -195,9 +195,7 @@ def Plot(config, tEnd, dt, data, planet, mercury):
 if __name__ == "__main__":
 
     args = parse_args()
-    config = Config()
-    if not args.config:
-        config = Config.load(args.config)
+    config = Config.load(args.config)
 
     logging.info(f"{config}")
 
