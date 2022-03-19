@@ -4,3 +4,4 @@ jupyterlab
 PYYaml
 pytest
 pytest-cov
+pytest-snapshot
