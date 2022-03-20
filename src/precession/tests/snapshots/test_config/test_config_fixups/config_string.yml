@@ -1,1 +1,1 @@
-config => batchSteps: 1, decoupledMercury: false, enableConvergenceTest: true, filePrefix: precession, grMercury: true, maxSteps: 50, onlyMercury: false, tEnd: 30
+config => G: 2, GMS: 2, batchSteps: 1, decoupledMercury: false, enableConvergenceTest: true, filePrefix: precession, grMercury: true, maxSteps: 50, onlyMercury: false, tEnd: 30
