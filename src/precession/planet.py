@@ -20,34 +20,14 @@ class Planet(object):
         self.config = config
 
     def fixup(self):
-        self.M = self.M / 2.e+30
         self.RMin = self.a * (1 - self.e)
         self.RMax = self.a * (1 + self.e)
         self.R = self.a
         self.V = (2 * math.pi * self.R) / self.T
-        self.GMS = self.R * self.V**2
         self.vMax = math.sqrt(
-            (((1 + self.e) * (1 + self.M)) / self.RMin) * self.GMS)
+            (((1 + self.e) * (1 + self.M)) / self.RMin) * self.config.GMS)
         self.L = self.a * (1 - self.e) * self.vMax
-        if (self.config.decoupledMercury):
-            self.GMP = 0.
-        else:
-            self.GMP = self.GMS * self.M
-        if (self.config.decoupledMercury):
-            self.GMM = 0.
-        else:
-            self.GMM = self.GMS * self.M
-        if (self.config.grMercury):
-            # Constant for General Relativistic correction on Mercury due to Sun
-            # This is the value that goes into the force equation term as:
-            #  +3*GMS*alpha/r^4
-            # And update to potential term in Lagrangian will be something like:
-            #  -GMS*alpha/r^3
-            # Where 3*alpha value taken from Giordano & Nakanishi is: 1.1e-8
-            # self.GMR = self.GMS * (1.1e-8)
-            self.GMR = self.GMS / (6.25e+4)**2
-        else:
-            self.GMR = 0.
+        self.GM = self.M * self.config.G
 
     @staticmethod
     def load(config, data):
