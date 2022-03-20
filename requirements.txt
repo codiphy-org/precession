@@ -5,3 +5,4 @@ PYYaml
 pytest
 pytest-cov
 pytest-snapshot
+scipy
