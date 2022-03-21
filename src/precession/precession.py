@@ -9,10 +9,6 @@ import pandas as pd
 from scipy import integrate
 
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(levelname)s:%(message)s')
-
-
 def parse_args():
     parser = argparse.ArgumentParser("Compute precession of orbits")
     parser.add_argument('--config', type=str, default="config.yml",
@@ -82,6 +78,9 @@ if __name__ == "__main__":
 
     from config import Config
     from planet import Planet
+
+    logging.basicConfig(level=logging.INFO,
+                        format='%(levelname)s:%(message)s')
 
     args = parse_args()
     config = Config.load(args.config)
