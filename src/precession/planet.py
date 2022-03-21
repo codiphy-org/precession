@@ -6,7 +6,7 @@ import math
 
 class Planet(object):
     def __init__(self, config):
-        self.GMS = 0.
+        self.GMS = 0
         # mass
         self.M = 0.
         self.name = "unknown"
@@ -20,14 +20,16 @@ class Planet(object):
         self.config = config
 
     def fixup(self):
+        self.M = self.M / 2.e+30
         self.RMin = self.a * (1 - self.e)
         self.RMax = self.a * (1 + self.e)
         self.R = self.a
         self.V = (2 * math.pi * self.R) / self.T
+        self.GMS = self.R * self.V**2
         self.vMax = math.sqrt(
-            (((1 + self.e) * (1 + self.M)) / self.RMin) * self.config.GMS)
+            (((1 + self.e) * (1 + self.M)) / self.RMin) * self.GMS)
         self.L = self.a * (1 - self.e) * self.vMax
-        self.GM = self.M * self.config.G
+        self.GM = self.GMS * self.M
 
     @staticmethod
     def load(config, data):

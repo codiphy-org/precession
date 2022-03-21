@@ -50,14 +50,14 @@ def compute_rhs(t, y, config, planet, mercury):
 
     d_rp_dt = v_p
     d_thetap_dt = omega_p
-    d_vp_dt = (r_p * omega_p**2) - (config.GMS / r_p**2) - \
+    d_vp_dt = (r_p * omega_p**2) - (planet.GMS / r_p**2) - \
         (alpha_m * (r_p - r_m * cos_theta_mp))
     d_omegap_dt = ((-2. * v_p * omega_p) / r_p) - \
         (alpha_m * (r_m / r_p) * sin_theta_mp)
 
     d_rm_dt = v_m
     d_thetam_dt = omega_m
-    d_vm_dt = (r_m * omega_m**2) - (config.GMS / r_m**2) - \
+    d_vm_dt = (r_m * omega_m**2) - (mercury.GMS / r_m**2) - \
         (alpha_p * (r_m - r_p * cos_theta_mp))
     d_omegam_dt = ((-2. * v_m * omega_m) / r_m) + \
         (alpha_p * (r_p / r_m) * sin_theta_mp)
