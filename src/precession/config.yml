@@ -1,4 +1,4 @@
-tEnd: 500.
+tEnd: 100.
 enableConvergenceTest: True
 targetTolerance: 1.0e-7
 max_step: 0.0005
