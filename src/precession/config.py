@@ -13,6 +13,8 @@ class Config(object):
         self.decoupledMercury = False
         self.grMercury = True
         self.enableConvergenceTest = True
+        self.GMS = 2
+        self.G = 2
 
     @staticmethod
     def load(data):

@@ -1,9 +1,4 @@
-tEnd: 450
-maxSteps: 10
-batchSteps: 10
-filePrefix: precession
-onlyMercury: False
-decoupledMercury: False
-grMercury: True
+tEnd: 100.
 enableConvergenceTest: True
 targetTolerance: 1.0e-7
+max_step: 0.0005

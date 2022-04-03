@@ -5,3 +5,8 @@ PYYaml
 pytest
 pytest-cov
 pytest-snapshot
+scipy
+pandas
+sklearn
+sympy
+einsteinpy
