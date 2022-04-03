@@ -8,3 +8,5 @@ pytest-snapshot
 scipy
 pandas
 sklearn
+sympy
+einsteinpy
